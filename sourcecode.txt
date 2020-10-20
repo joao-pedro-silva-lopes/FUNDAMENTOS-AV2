@@ -1,0 +1,316 @@
+Program tenda_do_frango;
+
+type cadastrocliente =
+  record
+    nome : string[25];
+    senha : string[15];
+    endereco : string[25];
+  end;
+	 
+var
+escolha, escolhapedido, perfil : integer; 
+F, L, B, A, MF, C1, C2 : real;
+transicao : char;
+cadastro : cadastrocliente;
+
+vetor : array[1..3] of real;
+pedido : real;
+
+
+procedure menu;
+Begin
+  textcolor(yellow);
+  textbackground(black);
+  writeln('============================================================================');  
+  writeln('|   ________________                                                       |');
+  writeln('|  |______    ______|                                                      |');
+  writeln('|         |  |                                                             |');
+  writeln('|         |  |     _______     ____      __    _______        ________     |');
+  writeln('|         |  |    |       |   |    \    |  |  |       \      /        \    |');
+  writeln('|         |  |    |   ____|   |     \   |  |  |   ___  \    /   ____   \   |');
+  writeln('|         |  |    |  |        |      \  |  |  |  |   \  |   |  /    \  |   |');
+  writeln('|         |  |    |  |__      |  |\   \ |  |  |  |   |  |   |  |    |  |   |');
+  writeln('|         |  |    |     |     |  | \   \|  |  |  |   |  |   |  |____|  |   |');
+  writeln('|         |  |    |   __|     |  |  \      |  |  |   |  |   |          |   |');
+  writeln('|         |  |    |  |        |  |   \     |  |  |   |  |   |   ____   |   |');
+  writeln('|         |  |    |  |____    |  |    \    |  |  |___/  |   |  |    |  |   |');
+  writeln('|         |  |    |       |   |  |     \   |  |        /    |  |    |  |   |');
+  writeln('|         |__|    |_______|   |__|      \__|  |_______/     |__|    |__|   |');
+  writeln('|                        _______      _______                              |');
+  writeln('|                       |  ___  \    / _____ \                             |');
+  writeln('|                       | |   \  |  | /     \ |                            |');
+  writeln('|                       | |    | |  | |     | |                            |');
+  writeln('|                       | |    | |  | |     | |                            |');
+  writeln('|                       | |    | |  | |     | |                            |');
+  writeln('|                       | |___/  |  | \_____/ |                            |');
+  writeln('|                       |______ /    \_______/                             |');
+  writeln('|    _________                                                             |');
+  writeln('|   |         |                                                            |');
+  writeln('|   |   ______|                                                            |');
+  writeln('|   |  |        _____     _______   __     __    _______     _______       |');
+  writeln('|   |  |___    |  _  \   /       \ |  \   |  |  /  _____\   / _____ \      |');
+  writeln('|   |      |   | | \  |  |   _   | |   \  |  | |  /        | /     \ |     |');
+  writeln('|   |   ___|   | |_/  |  |  | |  | |    \ |  | |  |        | |     | |     |');
+  writeln('|   |  |       |     /   |  |_|  | |     \|  | |  |  ____  | |     | |     |');
+  writeln('|   |  |       |     \   |   _   | |  |\     | |  | |_   | | |     | |     |');
+  writeln('|   |  |       |  |\  \  |  | |  | |  | \    | |  \___|  | | \_____/ |     |');
+  writeln('|   |__|       |__| \__\ |__| |__| |__|  \___|  \_______/   \_______/      |');
+  writeln('|                                                                          |');
+  writeln('============================================================================');
+  writeln('|                                                                          |');
+  writeln('|                                                                          |');
+  writeln('| ==============================================                           |');       
+  writeln('| |                   MENU                     |          FEITO POR:       |');
+  writeln('| | PRESSIONE 1 PARA: FAZER PEDIDO             |   ======================= |');													
+  writeln('| | PRESSIONE 2 PARA: PERFIL                   |   JOÃO PEDRO SILVA LOPES  |');													
+  writeln('| | PRESSIONE 3 PARA: FAZER CADASTRO           |   ITALO OLIVEIRA DA SILVA |');
+  writeln('| | PRESSIONE 4 PARA: SAIR                     |   ======================= |');
+  writeln('| ==============================================                           |');
+  writeln('|                                                                          |');
+  writeln('============================================================================');
+  perfil := perfil;
+  gotoxy(46,44);
+  readln(escolha);
+end;
+
+procedure pedi;
+begin		
+  if (F<0) or (L<0) or (B<0) or (A<0) or (MF<0) or (C1<0) or (C2<0) then
+  begin
+    writeln('============================================================================');
+    writeln('|     POR FAVOR REFAÇA O PEDIDO E DESTA VEZ SEM NÚMEROS NEGATIVOS...       |');
+    writeln('|                          POIS NÃO FAZ SENTIDO.                           |');
+    writeln('|                                                                          |');       
+    writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');
+    writeln('============================================================================');
+		gotoxy(67,27);    
+    readln(transicao);
+    clrscr;
+    exit;
+  end
+				
+  else
+  begin
+    pedido := ((F*22) + (L*2.5) + (B*9) + (A*9) + (MF*11) + (C1*6.5) + (C2*12));
+    writeln('============================================================================');
+    writeln('|                             SEU PEDIDO É:                                |');
+    writeln('|                                                                          |');
+    writeln('|                                                                          |');       
+    writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');
+    writeln('============================================================================');
+    gotoxy(34,25);
+    writeln('|',pedido:0:2,'|');
+    vetor[3] := vetor[2];
+    vetor[2] := vetor[1];
+    vetor[1] := pedido;
+    gotoxy(67,27);
+    readln(transicao); 
+    clrscr;
+    exit; 
+  end;		      
+end;  
+
+Begin
+  vetor[1] := 0;
+  vetor[2] := 0;
+  vetor[3] := 0;
+  perfil := 1;
+  repeat 
+    menu;
+    if escolha = 1 then
+    begin
+      clrscr;
+      if perfil = 1 then
+      begin
+        writeln('============================================================================');
+        writeln('|                                                                          |');
+        writeln('|   VOCÊ NÃO POSSUI UM PERFIL CADASTRADO, POR FAVOR SE CADASTRE NO MENU.   |');
+        writeln('|                                                                          |');
+	writeln('|                                                                          |');          
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');          
+        writeln('|                                                                          |');       
+        writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');
+        writeln('============================================================================');
+        gotoxy(67,9);
+        readln(transicao);
+        perfil := 1;
+        clrscr;
+      end
+					
+      else
+      begin      
+        writeln('============================================================================');
+        writeln('|             VOCÊ ESCOLHEU FAZER O PEDIDO, O QUE VAI QUERER?              |');
+        writeln('|     ESCOLHA A QUANTIDADE DE CADA PRODUTO NA ORDEM QUE ESTÁ DISPONÍVEL.   |');
+        writeln('|  SE FOR DIGITAR UM NÚMERO DECIMAL, COLOQUE UM PONTO AO INVÉS DA VÍRGULA. |'); 
+        writeln('|                                                                          |');       
+        writeln('|  FRANGO -------- R$ 22,00 unid                                           |');
+        writeln('|  LINGUIÇA ------ R$  2,50 unid                                           |');													
+        writeln('|  BAIÃO --------- R$  9,00 unid                                           |');													
+        writeln('|  ARROZ À GREGA - R$  9,00 unid                                           |');
+        writeln('|  MEIO FRANGO --- R$ 11,00 unid                                           |');
+        writeln('|  COCA 1L ------- R$  6,50 unid                                           |');
+        writeln('|  COCA 2L ------- R$ 12,00 unid                                           |');
+        writeln('|                                                                          |');
+        writeln('|  Quantos frangos você quer?                                              |');
+        writeln('|  Quantas linguiças você quer?                                            |');
+        writeln('|  Quantos baiões você quer?                                               |');
+	writeln('|  Quantos arroz você quer?                                                |');
+	writeln('|  Quantos meio frango você quer?                                          |');
+	writeln('|  Quantas cocas de 1 litro você quer?                                     |');
+	writeln('|  Quantas cocas de 2 litros você quer?                                    |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');			      
+        writeln('============================================================================');
+        gotoxy(44,14);
+        readln(F);
+	gotoxy(44,15);		       
+	readln(L);
+	gotoxy(44,16);	
+	readln(B);
+	gotoxy(44,17);    
+	readln(A);
+	gotoxy(44,18);	
+	readln(MF);
+	gotoxy(44,19);
+	readln(C1);
+	gotoxy(44,20);			
+	readln(C2);
+	gotoxy(1,23);
+	pedi;
+	perfil := 2;
+	clrscr;
+      end;
+    end;
+
+    if escolha = 2 then
+    begin
+    clrscr;
+      if perfil = 1 then
+      begin
+        writeln('============================================================================');
+        writeln('|                                                                          |');
+        writeln('|   VOCÊ NÃO POSSUI UM PERFIL CADASTRADO, POR FAVOR SE CADASTRE NO MENU.   |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');          
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');          
+        writeln('|                                                                          |');       
+        writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');
+        writeln('============================================================================');
+        gotoxy(67,9);
+        readln(transicao);
+        perfil := 1;
+        clrscr;
+      end
+            
+      else
+      begin
+        writeln('============================================================================');
+        writeln('|                                                                          |');
+        writeln('|                               SEU PERFIL:                                |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');          
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|HISTÓRICO DAS ÚLTIMAS 3 COMPRAS:                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');            
+        writeln('|                                                                          |');
+	writeln('|                                                                          |');       
+        writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');
+        writeln('============================================================================');
+        gotoxy(2,6);
+        writeln('NOME: ',cadastro.nome);
+	gotoxy(2,7);     
+	writeln('SENHA: ',cadastro.senha);
+	gotoxy(2,8);     
+	writeln('ENDEREÇO: ',cadastro.endereco);
+	gotoxy(2,11);
+	writeln('R$: ',vetor[1]:0:2);
+	gotoxy(2,12);
+	writeln('R$: ',vetor[2]:0:2);
+	gotoxy(2,13);
+        writeln('R$: ',vetor[3]:0:2);
+        gotoxy(67,15);
+        readln(transicao);
+        perfil := 2;
+        clrscr;
+      end;
+    end;
+    
+    if (escolha = 3) then
+    begin
+    clrscr;
+      if perfil = 1 then
+      begin
+        writeln('============================================================================');
+        writeln('|                                                                          |');
+        writeln('|                            FAZER CADASTRO:                               |');
+        writeln('|                                                                          |');
+	writeln('|INSIRA O SEU NOME COMPLETO:                                               |');
+	writeln('|                                                                          |');
+	writeln('|INSIRA SUA SENHA:                                                         |');
+	writeln('|                                                                          |');
+	writeln('|INSIRA SEU ENDEREÇO:                                                      |');       
+        writeln('|                                                                          |');
+	writeln('|                                                                          |');                                                                           
+        writeln('============================================================================');
+        gotoxy(2,6);
+        readln(cadastro.nome);
+        gotoxy(2,8);
+        readln(cadastro.senha);
+        gotoxy(2,10);
+        readln(cadastro.endereco);
+        clrscr;
+        writeln('============================================================================');
+        writeln('|                                                                          |');
+        writeln('|                                 PARABÈNS!                                |');
+        writeln('|                            VOCÊ FEZ O CADASTRO.                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+        writeln('|                                                                          |');
+	writeln('|                                                                          |');
+        writeln('|                                                                          |');       
+        writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');                                                                         
+        writeln('============================================================================');
+        gotoxy(67,10);
+        readln(transicao);
+        perfil := 2;
+        clrscr;
+      end
+      
+      else
+      begin
+        writeln('============================================================================');
+        writeln('|                                                                          |');
+        writeln('|                                                                          |');
+        writeln('|                                                                          |');
+	writeln('|                        VOCÊ JA FEZ O CADASTRO...                         |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');
+	writeln('|                                                                          |');       
+        writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');                                                                          
+        writeln('============================================================================');
+        gotoxy(67,10);
+        readln(transicao);
+        perfil := 2;
+        clrscr;
+      end;		
+    end;
+
+  until escolha = 4;
+    clrscr;
+    halt;
+
+End.
