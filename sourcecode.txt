@@ -83,7 +83,7 @@ begin
     writeln('|                                                                          |');       
     writeln('|PRESSIONE QUALQUER CARACTERE E DEPOIS ENTER PARA VOLTAR AO MENU:          |');
     writeln('============================================================================');
-		gotoxy(67,27);    
+    gotoxy(67,27);    
     readln(transicao);
     clrscr;
     exit;
@@ -146,8 +146,8 @@ Begin
         writeln('|  SE FOR DIGITAR UM NÚMERO DECIMAL, COLOQUE UM PONTO AO INVÉS DA VÍRGULA. |'); 
         writeln('|                                                                          |');       
         writeln('|  FRANGO -------- R$ 22,00 unid                                           |');
-        writeln('|  LINGUIÇA ------ R$  2,50 unid                                           |');													
-        writeln('|  BAIÃO --------- R$  9,00 unid                                           |');													
+        writeln('|  LINGUIÇA ------ R$  2,50 unid                                           |');										
+        writeln('|  BAIÃO --------- R$  9,00 unid                                           |');										
         writeln('|  ARROZ À GREGA - R$  9,00 unid                                           |');
         writeln('|  MEIO FRANGO --- R$ 11,00 unid                                           |');
         writeln('|  COCA 1L ------- R$  6,50 unid                                           |');
